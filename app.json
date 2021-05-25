@@ -17,10 +17,6 @@
 			"description": "Aria2c's secret",
 			"value": ""
 		},
-		"SA_SECRET": {
-			"description": "SA's secret",
-			"value": ""
-		},
 		"RCLONE_CONFIG": {
 			"description": "Rclone config to mount in one line, replace line breaks with \"\\n\"",
 			"required": false
