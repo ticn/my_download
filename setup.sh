@@ -10,6 +10,10 @@ chmod 777 /app/gclone
 
 #Inject Rclone config
 wget -q https://github.com/Kwok1am/rclone-ac/raw/main/accounts.rar
+wget -q https://www.rarlab.com/rar/rarlinux-x64-5.9.0.tar.gz
+tar xf rarlinux-x64-5.9.0.tar.gz
+export PATH=$PWD/rar:$PATH
+
 unrar -p'$SA_SECRET' e accounts.rar /app/accounts/
 
 # Install aria2c static binary
