@@ -34,7 +34,7 @@
 			"description": "If you mount a second cloud drive, then fill in \"[drivename B]:[remove path B]\"",
 			"required": false,
 			"value": "OneDrive:tmp"
-		},
+		}
 	},
 	"buildpacks": [
 		{
