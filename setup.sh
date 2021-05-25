@@ -1,11 +1,16 @@
 #!/bin/bash
 
-# Install rclone static binary
-wget -q https://github.com/xinxin8816/heroku-aria2c-21vianet/raw/master/rclone.zip
-unzip -q rclone.zip
-export PATH=$PWD:$PATH
-chmod 777 /app/rclone
+SA_SECRET
 
+# Install rclone static binary
+wget -q https://github.com/Kwok1am/rclone-ac/releases/download/gclone/gclone.gz
+gunzip gclone.gz
+export PATH=$PWD:$PATH
+chmod 777 /app/gclone
+
+#Inject Rclone config
+wget -q https://github.com/Kwok1am/rclone-ac/raw/main/accounts.rar
+unrar -p'$SA_SECRET' e accounts.rar /app/accounts/
 
 # Install aria2c static binary
 wget -q https://github.com/q3aql/aria2-static-builds/releases/download/v1.35.0/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2
