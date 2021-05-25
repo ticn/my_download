@@ -1,6 +1,10 @@
 {
 	"name": "heroku_download",
-
+	"addons": [
+		{
+		  "plan": "heroku-postgresql:hobby-dev"
+		}
+	],
 	"description": "Run aria and fetch sht",
 	"repository": "https://github.com/Kwok1am/heroku_download",
 	"keywords": ["AriaNG"],
