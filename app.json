@@ -21,6 +21,10 @@
 			"description": "SA's secret",
 			"value": ""
 		},
+		"SIZE_FILTER": {
+			"description": "SIZE FILTER",
+			"value": "90M"
+		},
 		"RCLONE_CONFIG": {
 			"description": "Rclone config to mount in one line, replace line breaks with \"\\n\"",
 			"required": false
