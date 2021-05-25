@@ -248,7 +248,7 @@ async function main(){
         const latestDate = result.rows[0].postdate;
         // Query job that is not in downloading table
         const prepare_jobs_query = `SELECT url,magnet,title FROM posts
-        WHERE postdate = $1
+        WHERE postdate = TO_DATE($1,'YYYY-MM-DD') - 1
         AND magnet IS NOT NULL
         AND NOT EXISTS (
             SELECT 1
