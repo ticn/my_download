@@ -224,13 +224,8 @@ async function updateDB(){
 
         var original_magnet = $('div.blockcode > div > ol > li').text();
         if (original_magnet.includes('magnet')){
-	       var magnet = original_magnet.match(/magnet:\?xt=urn:btih(?:(?!magnet).){41}/);
-	       if(!magnet){
-                var magnet = original_magnet.match(/magnet:\?xt=urn:btih(?:(?!magnet).){33}/);
-	       }
-	       if(magnet){
+	       var magnet = original_magnet.match(/magnet:\?xt=urn:btih(?:(?!magnet).)*/);
                 await client.query(update_query_text,[magnet,url]);
-            }
         }
     }
     await Promise.map(postsWithoutMagnet,parseMagnet,{concurrency:32});
