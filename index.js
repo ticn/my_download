@@ -222,10 +222,10 @@ async function updateDB(){
         const html = respone.body;
         const $ = cheerio.load(html);
 
-        var original_magnet = $('div.blockcode > div > ol > li').text();
-        if (original_magnet.includes('magnet')){
-	       var magnet = original_magnet.match(/magnet:\?xt=urn:btih(?:(?!magnet).)*/);
-                await client.query(update_query_text,[magnet,url]);
+        var magnet = $('div.blockcode > div > ol > li').text();
+        if (magnet.includes('magnet')){
+	       var magnet = magnet.match(/magnet:\?xt=urn:btih(?:(?!magnet).)*/);
+           await client.query(update_query_text,[magnet,url]);
         }
     }
     await Promise.map(postsWithoutMagnet,parseMagnet,{concurrency:32});
