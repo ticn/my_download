@@ -232,7 +232,7 @@ async function updateDB(){
                 await client.query(update_query_text,[magnet,url]);
             }
         }
-
+    }
     await Promise.map(postsWithoutMagnet,parseMagnet,{concurrency:32});
 }
 
