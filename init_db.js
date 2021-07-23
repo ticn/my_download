@@ -125,9 +125,15 @@ async function main(){
         const html = respone.body;
         const $ = cheerio.load(html);
 
-        const magnet = $('div.blockcode > div > ol > li').text();
-        if (magnet.includes('magnet')){
-            await client.query(update_query_text,[magnet,url]);
+        var original_magnet = $('div.blockcode > div > ol > li').text();
+        if (original_magnet.includes('magnet')){
+	       var magnet = original_magnet.match(/magnet:\?xt=urn:btih:[0-9a-zA-Z]{40}/);
+	       if(!magnet){
+                var magnet = original_magnet.match(/magnet:\?xt=urn:btih:[0-9a-zA-Z]{32}/)[0];
+	       }
+	       if(magnet){
+                await client.query(update_query_text,[magnet,url]);
+           }
         }
     }
 
