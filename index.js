@@ -242,6 +242,17 @@ async function updateDB(){
     await Promise.map(postsWithoutMagnet,parseMagnet,{concurrency:32});
 }
 
+async function cleanOldPost(latestDate){
+    const query = `select * FROM posts
+    where postdate <  TO_DATE($1,'YYYY-MM-DD') - INTERVAL '2 days';`;
+    const result = await client.query(query,[latestDate]);
+    for (const doc of result.rows){
+        const title = doc['title'];
+        const delete_query = `DELETE FROM posts
+        WHERE title = $1;`;
+        await client.query(delete_query,[title]);
+    }
+}
 // 
 async function main(){
     await client.connect();
@@ -257,6 +268,7 @@ async function main(){
         LIMIT 1;`;
         let result = await client.query(get_date_query);
         const latestDate = result.rows[0].postdate;
+	await cleanOldPost(latestDate);
         // Query job that is not in downloading table
         const prepare_jobs_query = `SELECT url,magnet,title FROM posts
         WHERE postdate = TO_DATE($1,'YYYY-MM-DD') - 1
