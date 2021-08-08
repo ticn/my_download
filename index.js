@@ -244,7 +244,7 @@ async function updateDB(){
 
 async function cleanOldPost(latestDate){
     const query = `select * FROM posts
-    where postdate <  TO_DATE($1,'YYYY-MM-DD') - INTERVAL '2 days';`;
+    where postdate <  TO_DATE($1,'YYYY-MM-DD') - INTERVAL '30 days';`;
     const result = await client.query(query,[latestDate]);
     for (const doc of result.rows){
         const title = doc['title'];
